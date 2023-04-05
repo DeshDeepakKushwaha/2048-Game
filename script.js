@@ -13,7 +13,59 @@ grid.randomEmptyCell().tile = new Tile(gameBoard);
 //To Start A Game
 setUpInput();
 function setUpInput() {
+  window.addEventListener("swiped", handleMobileInput, { once: true });
   window.addEventListener("keydown", handleInput, { once: true });
+}
+
+async function handleMobileInput(e) {
+  switch (e.detail.dir) {
+    case "up":
+      if (!canMoveUp()) {
+        setUpInput();
+        return;
+      }
+      await moveUp();
+      break;
+    case "down":
+      e.preventDefault();
+      if (!canMoveDown()) {
+        setUpInput();
+        return;
+      }
+      await moveDown();
+      break;
+    case "left":
+      if (!canMoveLeft()) {
+        setUpInput();
+        return;
+      }
+      await moveLeft();
+      break;
+    case "right":
+      if (!canMoveRight()) {
+        setUpInput();
+        return;
+      }
+      await moveRight();
+      break;
+    default:
+      setUpInput();
+      return;
+  }
+
+  grid.cells.forEach((cell) => cell.mergeTiles());
+
+  const newTile = new Tile(gameBoard);
+  grid.randomEmptyCell().tile = newTile;
+
+  if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+    newTile.waitForTransition(true).then(() => {
+      alert("Game Over!\nRefresh the page for a new one!");
+    });
+    return;
+  }
+
+  setUpInput();
 }
 
 async function handleInput(e) {
