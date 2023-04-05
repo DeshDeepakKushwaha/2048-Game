@@ -13,7 +13,7 @@ grid.randomEmptyCell().tile = new Tile(gameBoard);
 //To Start A Game
 setUpInput();
 function setUpInput() {
-  window.addEventListener("swiped", handleMobileInput, { once: true });
+  gameBoard.addEventListener("swiped", handleMobileInput, { once: true });
   window.addEventListener("keydown", handleInput, { once: true });
 }
 
