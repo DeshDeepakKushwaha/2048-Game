@@ -42,8 +42,19 @@
 
         </div>
 
-        <p class="copyright">Desh Deepak Kushwaha @2023</p>
+        <a href="https://deshdeepakkushwaha.netlify.app/" class="copyright" style="text-decoration: none;">
+            <p>Desh Deepak Kushwaha @ <span id="time"></span></p>
+        </a>
+
     </section>
+
+    <script>
+        const time = document.getElementById("time")
+        const now = new Date();
+        const year = now.getFullYear();
+        time.innerText = year;
+
+    </script>
 </body>
 
 </html>

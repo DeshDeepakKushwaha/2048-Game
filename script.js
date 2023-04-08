@@ -13,7 +13,7 @@ grid.randomEmptyCell().tile = new Tile(gameBoard);
 //To Start A Game
 setUpInput();
 function setUpInput() {
-  window.addEventListener("swiped", handleMobileInput, { once: true });
+  gameBoard.addEventListener("swiped", handleMobileInput, { once: true });
   window.addEventListener("keydown", handleInput, { once: true });
 }
 
@@ -64,6 +64,9 @@ async function handleMobileInput(e) {
     });
     return;
   }
+  // create an Audio object
+  var audio = new Audio("./sound.mpeg");
+  audio.play();
 
   setUpInput();
 }
@@ -114,6 +117,10 @@ async function handleInput(e) {
     });
     return;
   }
+
+  // create an Audio object
+  var audio = new Audio("./sound.mpeg");
+  audio.play();
 
   setUpInput();
 }
