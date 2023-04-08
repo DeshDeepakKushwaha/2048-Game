@@ -1,5 +1,5 @@
 const GRID_SIZE = 4;
-const CELL_SIZE = 10;
+const CELL_SIZE = 13;
 const CELL_GAP = 2;
 const score = document.getElementById("score");
 let SCORE = 0;
